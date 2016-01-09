@@ -1,0 +1,312 @@
+.boldTextWhite
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 8pt;
+    COLOR: white;
+    FONT-FAMILY: Verdana, Arial;
+    TEXT-DECORATION: none
+}
+.regTextBlack
+{
+    FONT-WEIGHT: normal;
+    FONT-SIZE: 8pt;
+    COLOR: black;
+    FONT-FAMILY: Verdana, Arial;
+    TEXT-DECORATION: none
+}
+.boldTextBlack
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 8pt;
+    COLOR: black;
+    FONT-FAMILY: Verdana, Arial
+}
+.regTextSlate
+{
+    FONT-WEIGHT: normal;
+    FONT-SIZE: 8pt;
+    COLOR: lightslategray;
+    FONT-FAMILY: Verdana, Arial;
+    TEXT-DECORATION: line-through
+}
+.boldTextRed
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 8pt;
+    COLOR: red;
+    FONT-FAMILY: Verdana, Arial
+}
+.boldTextLime
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 8pt;
+    COLOR: lime;
+    FONT-FAMILY: Verdana, Arial
+}
+.regTextRed
+{
+    FONT-WEIGHT: normal;
+    FONT-SIZE: 8pt;
+    COLOR: red;
+    FONT-FAMILY: Verdana, Arial;
+    TEXT-DECORATION: none
+}
+BODY2
+{
+    SCROLLBAR-FACE-COLOR: #e6f2ff;
+    SCROLLBAR-HIGHLIGHT-COLOR: #336699;
+    CURSOR: auto;
+    SCROLLBAR-SHADOW-COLOR: black;
+    SCROLLBAR-3DLIGHT-COLOR: #bfdfff;
+    SCROLLBAR-ARROW-COLOR: black;
+    SCROLLBAR-TRACK-COLOR: white;
+    FONT-FAMILY: Verdana, Arial;
+    SCROLLBAR-DARKSHADOW-COLOR: #336699;
+    BACKGROUND-COLOR: white
+}
+BODY
+{
+    SCROLLBAR-FACE-COLOR: white;
+    FONT-SIZE: 8pt;
+    COLOR: black;
+    FONT-FAMILY: Verdana, Arial;
+    BACKGROUND-COLOR: white;
+    TEXT-DECORATION: none
+}
+.regTextGreen
+{
+    FONT-WEIGHT: normal;
+    FONT-SIZE: 8pt;
+    COLOR: #006600;
+    FONT-FAMILY: Verdana, Arial;
+    TEXT-DECORATION: none
+}
+.lrgBoldTextBlack
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 9pt;
+    COLOR: black;
+    FONT-FAMILY: Verdana, Arial;
+    TEXT-DECORATION: none
+}
+.regTextMaroon
+{
+    FONT-WEIGHT: normal;
+    FONT-SIZE: 8pt;
+    COLOR: maroon;
+    FONT-FAMILY: Verdana, Arial;
+    TEXT-DECORATION: none
+}
+.headerMaroon
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 13pt;
+    COLOR: maroon;
+    FONT-FAMILY: Verdana, Arial
+}
+.headerBlue
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 13pt;
+    COLOR: darkblue;
+    FONT-FAMILY: Verdana, Arial
+}
+.headerBlack
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 13pt;
+    COLOR: black;
+    FONT-FAMILY: Verdana, Arial
+}
+.subHeaderMaroon
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 10pt;
+    COLOR: maroon;
+    FONT-FAMILY: Verdana, Arial
+}
+A.regLinkRed
+{
+    FONT-WEIGHT: normal;
+    FONT-SIZE: 8pt;
+    COLOR: red;
+    FONT-FAMILY: Verdana, Arial;
+    TEXT-DECORATION: none
+}
+A.regLinkRed:hover
+{
+    FONT-WEIGHT: normal;
+    FONT-SIZE: 8pt;
+    COLOR: blue;
+    FONT-FAMILY: Verdana, Arial;
+    TEXT-DECORATION: underline
+}
+A.headerLinkBlue
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 13pt;
+    COLOR: midnightblue;
+    FONT-FAMILY: Verdana, Arial;
+    TEXT-DECORATION: none
+}
+A.headerLinkBlue:hover
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 13pt;
+    COLOR: darkred;
+    FONT-FAMILY: Verdana, Arial;
+    TEXT-DECORATION: underline
+}
+.subHeaderBlue
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 10pt;
+    COLOR: darkblue;
+    FONT-FAMILY: Verdana, Arial
+}
+.boldTextGreen
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 8pt;
+    COLOR: #006600;
+    FONT-FAMILY: Verdana, Arial
+}
+.frenchHeaderBlue
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 11pt;
+    COLOR: darkblue;
+    FONT-FAMILY: Verdana, Arial
+}
+.frenchSubHeaderBlue
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 9pt;
+    COLOR: darkblue;
+    FONT-FAMILY: Verdana, Arial
+}
+A.reglinkMaroon
+{
+    FONT-WEIGHT: normal;
+    FONT-SIZE: 8pt;
+    COLOR: maroon;
+    FONT-FAMILY: Verdana, Arial;
+    TEXT-DECORATION: none
+}
+A.reglinkMaroon:hover
+{
+    FONT-WEIGHT: 500;
+    FONT-SIZE: 8pt;
+    COLOR: #006600;
+    FONT-FAMILY: Verdana, Arial;
+    TEXT-DECORATION: underline
+}
+INPUT
+{
+    FONT-WEIGHT: 500;
+    FONT-SIZE: 10pt;
+    COLOR: black;
+    FONT-FAMILY: Verdana, Arial;
+    TEXT-DECORATION: none
+}
+A.regLinkBlue
+{
+    FONT-WEIGHT: normal;
+    FONT-SIZE: 8pt;
+    COLOR: navy;
+    FONT-FAMILY: Verdana, Arial;
+    TEXT-DECORATION: none
+}
+A.regLinkBlue:hover
+{
+    FONT-WEIGHT: 500;
+    FONT-SIZE: 8pt;
+    COLOR: maroon;
+    FONT-FAMILY: Verdana, Arial;
+    TEXT-DECORATION: underline
+}
+A.bigLinkRed
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 10pt;
+    COLOR: red;
+    FONT-FAMILY: Verdana, Arial
+}
+A.bigLinkRed:hover
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 10pt;
+    COLOR: blue;
+    FONT-FAMILY: Verdana, Arial
+}
+A.bigLinkBlue
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 10pt;
+    COLOR: midnightblue;
+    FONT-FAMILY: Verdana, Arial;
+    TEXT-DECORATION: none
+}
+A.bigLinkBlue:hover
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 10pt;
+    COLOR: darkred;
+    FONT-FAMILY: Verdana, Arial;
+    TEXT-DECORATION: underline
+}
+.lrgRegTextBlack
+{
+    FONT-WEIGHT: normal;
+    FONT-SIZE: 10pt;
+    COLOR: black;
+    FONT-FAMILY: Verdana, Arial;
+    TEXT-DECORATION: none
+}
+A.regLinkGreen
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 8pt;
+    COLOR: #006600;
+    FONT-FAMILY: Verdana, Arial;
+    TEXT-DECORATION: none
+}
+A.regLinkGreen:hover
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 8pt;
+    COLOR: maroon;
+    FONT-FAMILY: Verdana, Arial;
+    TEXT-DECORATION: underline
+}A.boldLinkBlue
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 9pt;
+    COLOR: navy;
+    FONT-FAMILY: Verdana, Arial;
+    TEXT-DECORATION: none
+}
+A.boldLinkBlue:hover
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 9pt;
+    COLOR: maroon;
+    FONT-FAMILY: Verdana, Arial;
+    TEXT-DECORATION: underline
+}
+A.hugeLinkBlue
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 12pt;
+    COLOR: midnightblue;
+    FONT-FAMILY: Verdana, Arial;
+    TEXT-DECORATION: none
+}
+A.hugeLinkBlue:hover
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 12pt;
+    COLOR: darkred;
+    FONT-FAMILY: Verdana, Arial;
+    TEXT-DECORATION: underline
+}
