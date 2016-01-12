@@ -49,6 +49,23 @@
 			response.write "</table>"
 		%>
 		</td>
+		<td>			
+			<%		
+			'language selector
+			if Request.ServerVariables("URL") = "/edi_teacher.asp" or Request.ServerVariables("URL") = "/edi_teacher_class.asp"then 
+				response.write "<input name=""language"" type=""checkbox"" "
+																				
+				' check to see language
+				if session("language") = "French" then 				
+					response.write " onchange=""javascript:document.location=location.pathname +'?Language=English';"""
+				elseif session("language") = "English" then 				
+					response.write "checked onchange=""javascript:document.location=location.pathname +'?Language=French'"""
+				end if 
+				
+				response.write "data-toggle=""toggle"" data-off=""French"" data-on=""English"" data-onstyle=""info"" data-offstyle=""warning"" data-size=""mini"">"
+			end if 
+			%>			
+		</td>
 	</tr>
 </table>
 <br />

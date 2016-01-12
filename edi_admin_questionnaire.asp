@@ -9,9 +9,20 @@ if blnSecurity then
 	<!-- added UTF8 Encoding to get rid of funny characters -->
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 
+	 <!-- added UTF8 Encoding to get rid of funny characters -->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 	<!-- Start CSS files-->
 		<link rel="stylesheet" type="text/css" href="Styles/edi.css">
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+		<link href="css/bootstrap-toggle.min.css" type="text/css" rel="stylesheet">
+		
 	<!-- End CSS files -->
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap-toggle.min.js"></script>
 	<script language="javascript" type="text/javascript" src="js/form.js"></script>
 	<script language="javascript" type="text/javascript" src="js/window.js"></script>
 </head>
@@ -79,6 +90,10 @@ if blnSecurity then
 		conn.execute "UPDATE children SET chkCompleted = 1, dtmDate = '" & date & "' WHERE strEDIID = '" & strEDIID & "'"	
 	elseif Request.form("frmAction") = "unlock" then
 		conn.execute "UPDATE children SET chkCompleted = 0, dtmDate = null WHERE strEDIID = '" & strEDIID & "'"			
+	elseif Request.form("frmAction") = "resetConsent" then
+		conn.execute "UPDATE children SET intConsent = null WHERE strEDIID = '" & strEDIID & "'"	
+		conn.execute "UPDATE demographics SET intStatus = null WHERE strEDIID = '" & strEDIID & "'"	
+		conn.execute "UPDATE children SET chkCompleted = 0, dtmDate = null WHERE strEDIID = '" & strEDIID & "'"		
 	end if 
 	
 
@@ -320,7 +335,9 @@ if blnSecurity then
 							' end first column	
 							Response.Write "</td></tr>"
 							
-							
+							'reset consent
+							response.write "<tr><td colspan=""2"" align=""center""><button type=""button"" class=""btn btn-primary btn-lg"" onclick=""javascript:confirm_Unlock('" & strEDIYear & "','" & strSite & "','" & strSchool & "','" & strTeacher & "','" & strClass & "','" & strChild & "','resetConsent');"">Reset Consent</button></td></tr>"
+								
 							' start second row
 							Response.Write "<tr><td>"	
 								Response.Write "<br />&nbsp;&nbsp;<font class=""subheaderBlue"">Demographics</font><br />"

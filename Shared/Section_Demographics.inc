@@ -125,33 +125,35 @@
 
 		  ' only write the questions
 		  if rstData("option") = 0 then 
+			'2016-01-09 - changed again- this time removed date of completion for all provinces - need to remove question numbers.
 			  '2015-12-10 - only write question numbers if not in alberta
-				if session("province") <>3 then				
-					response.write "<td align=""left"" valign=""top"" width=""35"">&nbsp;<font class=""boldTextBlack"">" 
-									
-					if rstData("question") < 10 and Session("Province") > 3 and Session("Province") < 2 then 
-						  Response.Write "&nbsp;&nbsp;"        
-					end if 
-						
-					Response.Write strQuestion & " &nbsp;&nbsp;</font></td>"
-				end if 
+				'if session("province") <>3 then				
+				'	response.write "<td align=""left"" valign=""top"" width=""35"">&nbsp;<font class=""boldTextBlack"">" 
+				'					
+				'	if rstData("question") < 10 and Session("Province") > 3 and Session("Province") < 2 then 
+				''		  Response.Write "&nbsp;&nbsp;"        
+				'	end if 
+				'		
+				'	Response.Write strQuestion & " &nbsp;&nbsp;</font></td>"
+				'end if 
 			' added 2012-10-02
 			'2015-12-10 - do not display for alberta
-			if session("province") =3 then 
-				if (rstdata("question")< 6 or rstData("question") >8) AND rstData("question")<> 11 AND rstData("question")<17 then
-					if session("province") = 3 and (rstData("question")<>7 and rstData("question")<>17 and rstData("question")<>18) then
-							response.write "<td colspan=""2""><font class=""boldTextBlack"">" &  rstData(strLanguage) & ": </font>"
-					else 
-						response.write "<td><font class=""boldTextBlack"">" &  rstData(strLanguage) & ": </font>"
-					end if 
-				end if 			
-			else
-				if session("province") = 3 and (rstData("question")<>7 and rstData("question")<>17 and rstData("question")<>18) then
+			' 2016-01-09 - see above - no numbers for any province
+			'if session("province") =3 then 
+			'	if (rstdata("question")< 6 or rstData("question") >8) AND rstData("question")<> 11 AND rstData("question")<17 then
+			'		if session("province") = 3 and (rstData("question")<>7 and rstData("question")<>17 and rstData("question")<>18) then
+			'				response.write "<td colspan=""2""><font class=""boldTextBlack"">" &  rstData(strLanguage) & ": </font>"
+			'		else 
+			'			response.write "<td><font class=""boldTextBlack"">" &  rstData(strLanguage) & ": </font>"
+			'		end if 
+			'	end if 			
+			'else
+				'if session("province") = 3 and (rstData("question")<>7 and rstData("question")<>17 and rstData("question")<>18) then
 					response.write "<td colspan=""2""><font class=""boldTextBlack"">" &  rstData(strLanguage) & ": </font>"
-				else 
-					response.write "<td><font class=""boldTextBlack"">" &  rstData(strLanguage) & ": </font>"
-				end if 
-			end if
+				'else 
+				'	response.write "<td><font class=""boldTextBlack"">" &  rstData(strLanguage) & ": </font>"
+				'end if 
+			'end if
 		end if
 
 		' NWT Demographics

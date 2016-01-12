@@ -170,7 +170,7 @@
 					set rstSpecial = server.CreateObject("adodb.recordset")
 
 					' open all languages
-					rstSpecial.Open "SELECT SPID, english, french FROM [LU SpecialProblems] ORDER BY " & strLanguage, conn
+					rstSpecial.Open "SELECT SPID, english, french FROM [LU SpecialProblems] ORDER BY sequence", conn  ' & strLanguage, conn
 
 					' store all languages in array
 					aSpecial = rstSpecial.GetRows 	
@@ -242,33 +242,33 @@
 					' write the radio option buttons or checkbox buttons
           if intOptions>0 then 
             if isCheckBox  then
-						response.write "<td>"
-						response.write buildCheckBox("intQ" & rstData("question")&  chr(rstData("option")),rstStudent(strQuestion))
-						response.write "</td><td>"
-						response.write buildCheckBox("intQ" & rstData("question")&  chr(rstData("option")) & "2" ,rstStudent(strQuestion & "2"))
-						response.write "</td>"
-						
-						' Saskatchewan and Alberta
-						if intOptions = 3 then
-						Select case session("Province")
-						' Alberta
-						case 3
-							response.write "<td>"
-							response.write buildCheckBox("intQ" & rstData("question")&  chr(rstData("option")) & "Code" ,rstStudent(strQuestion & "Code"))
-							response.write "</td>"
+				response.write "<td>"
+				response.write buildCheckBox("intQ" & rstData("question")&  chr(rstData("option")),rstStudent(strQuestion))
+				response.write "</td><td>"
+				response.write buildCheckBox("intQ" & rstData("question")&  chr(rstData("option")) & "2" ,rstStudent(strQuestion & "2"))
+				response.write "</td>"
+				
+				' Saskatchewan and Alberta
+				if intOptions = 3 then
+					Select case session("Province")
+					' Alberta
+					case 3
+						'response.write "<td>"
+						'response.write buildCheckBox("intQ" & rstData("question")&  chr(rstData("option")) & "Code" ,rstStudent(strQuestion & "Code"))
+						'response.write "</td>"
 					  ' saskatchewan
 					  case 5
 						response.write "<td>"
 						response.write buildCheckBox("intQ" & rstData("question")&  chr(rstData("option")) & "RIS" ,rstStudent(strQuestion & "RIS"))
 						response.write "</td>"                    
 					end select
-              end if 
-					  else              
-              for intCol = 1 to intoptions
-							Response.Write "<td align=""center"" valign=""middle"" width=""70"">"
-							response.write buildRadioButton("horizontal", strQuestion, aHeader(intcol),intcol, rstStudent(strQuestion),"","")
-							response.write "</td>"
-					    next 					  
+				end if 
+			else              
+				for intCol = 1 to intoptions
+					Response.Write "<td align=""center"" valign=""middle"" width=""70"">"
+					response.write buildRadioButton("horizontal", strQuestion, aHeader(intcol),intcol, rstStudent(strQuestion),"","")
+					response.write "</td>"
+				next 					  
             end if 
           end if
 					response.write getHelpLink(session("Province"), "SectionD", strQuestion)

@@ -159,6 +159,20 @@ function goConfirm_Lock(EDIYear, strSite, strSchool,strTeacher, strClass, strChi
 	
 }
 
+function goConfirm_Consent(EDIYear, strSite, strSchool,strTeacher, strClass, strChild, intConsent, strAction) 
+{ 		
+	document.forms.Children.target = '';
+	document.forms.Children.action = '';
+	document.forms.Children.frmEDIYear.value = EDIYear;
+	document.forms.Children.frmSite.value = strSite;
+	document.forms.Children.frmSchool.value = strSchool;
+	document.forms.Children.frmTeacher.value = strTeacher;
+	document.forms.Children.frmClass.value = strClass;
+	document.forms.Children.frmChild.value = strChild;
+	document.forms.Children.frmConsent.value = intConsent;
+	document.forms.Children.frmAction.value = strAction;
+	document.forms.Children.submit();
+}
 
 // confirm that the user wants to lock the child
 function confirm_Lock(EDIYear, strSite, strSchool,strTeacher, strClass, strChild, strAction,language,confirmLanguage) 

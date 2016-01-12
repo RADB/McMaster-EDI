@@ -75,7 +75,7 @@ if blnSecurity then
 		
 		if Request.Form("Action") = "Add" then
 			strSql = "INSERT INTO children (intClassID,intChild,strEDIID,strLocalID,createdBy) VALUES(" & mid(request.form("ediID"),5,9) & "," & right(request.form("ediID"),2) & ",'" & request.form("ediID") & "','" & request.form("LocalID") & "','" &session("id") & "')"	
-			response.write strSql
+			'response.write strSql
 			conn.execute strSql
 			
 			if conn.errors.count > 0 then 
@@ -118,6 +118,22 @@ if blnSecurity then
 			strEDIYear = request.form("frmEDIYear")
 			strEdiID = strEDIYear & strSite & strSchool & strTeacher & strClass & strChild 
             strSql = "UPDATE children SET chkCompleted = 1, dtmDate = '" & date & "' WHERE strEDIID = '" & strEDIID & "'"	            
+			conn.execute strSql
+		elseif Request.form("frmAction") = "consent" then
+			strChild = Request.Form("frmChild")
+			strClass = Request.Form("frmClass")
+			strTeacher = Request.Form("frmTeacher")
+			strSchool = Request.Form("frmSchool")
+			strSite = Request.Form("frmSite")
+			strEDIYear = request.form("frmEDIYear")
+			strEdiID = strEDIYear & strSite & strSchool & strTeacher & strClass & strChild 
+			
+			if request.form("frmConsent") = "true" then 
+				strSql = "UPDATE children SET intConsent = 1 WHERE strEDIID = '" & strEDIID &"'"			
+			else	
+				strSql = "UPDATE children SET intConsent = 0 WHERE strEDIID = '" & strEDIID &"'"
+			end if 
+			
 			conn.execute strSql
 		end if 
 	end if
@@ -432,6 +448,7 @@ if blnSecurity then
 						<input type="hidden" name="frmTeacher" value="">
 						<input type="hidden" name="frmClass" value="">					
 						<input type="hidden" name="frmChild" value="">
+						<input type="hidden" name="frmConsent" value="">
 						<input type="hidden" name="frmAction" value="" />
 					</form>
 						<br />
@@ -441,10 +458,10 @@ if blnSecurity then
 							' select all children in the CLASS 				
 							if session("Language") = "English" then 
 								'strSql = "SELECT strEDIID, strLocalID, IIf([intSex]=1,'M',IIf([intsex]=2,'F','')) AS gender, dtmDOB, strPostal, chkCompleted, dtmDate FROM children WHERE intClassID = " & intSite & intSchool & intTeacher & intClass & " ORDER BY strEDIID"
-								strSql = "SELECT s.strName,c2.intClassID,c.strEDIID, c.strLocalID, CASE c.intSex WHEN 1 THEN 'M' WHEN 2 THEN 'F' ELSE '' END AS gender, c.dtmDOB, c.strPostal, c.chkCompleted, c.dtmDate, d.intStatus FROM  ((children c LEFT JOIN Classes c2 on c2.intClassid = c.intClassid)LEFT JOIN teachers t ON t.intTeacherID = c2.intTeacherID) LEFT JOIN schools s ON t.intSchoolID = s.intSchoolID LEFT JOIN demographics d ON c.strEDIID = d.strEDIID WHERE t.strEmail = '" & session("ID") & "' ORDER BY c.strEDIID"
+								strSql = "SELECT s.strName,c2.intClassID,c.strEDIID, c.strLocalID, CASE c.intSex WHEN 1 THEN 'M' WHEN 2 THEN 'F' ELSE '' END AS gender, c.dtmDOB, c.strPostal, c.chkCompleted, c.dtmDate, d.intStatus, c.intConsent FROM  ((children c LEFT JOIN Classes c2 on c2.intClassid = c.intClassid)LEFT JOIN teachers t ON t.intTeacherID = c2.intTeacherID) LEFT JOIN schools s ON t.intSchoolID = s.intSchoolID LEFT JOIN demographics d ON c.strEDIID = d.strEDIID WHERE t.strEmail = '" & session("ID") & "' ORDER BY c.strEDIID"
 							else
 								'strSql = "SELECT strEDIID, strLocalID, IIf([intSex]=1,'M',IIf([intsex]=2,'F','')) AS gender, dtmDOB, strPostal, chkCompleted, dtmDate FROM children WHERE intClassID = " & intSite & intSchool & intTeacher & intClass & " ORDER BY strEDIID"
-								strSql = "SELECT s.strName,c2.intClassID,c.strEDIID, c.strLocalID, CASE c.intSex WHEN 1 THEN 'M' WHEN 2 THEN 'F' ELSE '' END AS gender, c.dtmDOB, c.strPostal, c.chkCompleted, c.dtmDate, d.intStatus FROM  ((children c LEFT JOIN Classes c2 on c2.intClassid = c.intClassid)LEFT JOIN teachers t ON t.intTeacherID = c2.intTeacherID) LEFT JOIN schools s ON t.intSchoolID = s.intSchoolID LEFT JOIN demographics d ON c.strEDIID = d.strEDIID WHERE t.strEmail = '" & session("ID") & "' ORDER BY c.strEDIID"
+								strSql = "SELECT s.strName,c2.intClassID,c.strEDIID, c.strLocalID, CASE c.intSex WHEN 1 THEN 'M' WHEN 2 THEN 'F' ELSE '' END AS gender, c.dtmDOB, c.strPostal, c.chkCompleted, c.dtmDate, d.intStatus, c.intConsent FROM  ((children c LEFT JOIN Classes c2 on c2.intClassid = c.intClassid)LEFT JOIN teachers t ON t.intTeacherID = c2.intTeacherID) LEFT JOIN schools s ON t.intSchoolID = s.intSchoolID LEFT JOIN demographics d ON c.strEDIID = d.strEDIID WHERE t.strEmail = '" & session("ID") & "' ORDER BY c.strEDIID"
 							end if 
 							                           
 							'intLanguage removed - feb 8
@@ -489,7 +506,7 @@ if blnSecurity then
 										end if 
 										
 										' show the class information 
-										response.write 	"<tr><td colspan=""" & cols & """>&nbsp;<font class=""subheadermaroon"">" & classid & ": " & rstData("strName") & " - " & GetClassTime(right(rstData("intClassID"),1)) & "</font></td></tr>"
+										response.write 	"<tr><td colspan=""" & cols & """>&nbsp;<font class=""subheadermaroon"">" & classid & ": " & rstData("strName") '& " - " & GetClassTime(right(rstData("intClassID"),1)) & "</font></td></tr>"
 										
 										' show the header
 										Call ChildHeader()
@@ -548,20 +565,31 @@ if blnSecurity then
 									end if 
 									Response.Write "</font></td>"
 									
+									'2016
 									if session("province") = 3 then 										
-										response.write "<td align=""center""><input type=""checkbox"" "
+										response.write "<td align=""center""><input id=""consent" & rstData("strediid") & """ name=""consent" & rstData("strediid") & """ type=""checkbox"" "
 										
-										' check to see if no consent
-										if rstData("intStatus") <> 6 or checkNull(rstData("intStatus")) ="null" then 
-											response.write "checked onchange=""javascript:alert('" & strAlbertaWarning & "');goConfirm_Lock('"& left(rstData("strEDIID"),4) & "','" & mid(rstData("strEDIID"),5,3) & "','" & mid(rstData("strEDIID"),8,3) & "','" & mid(rstData("strEDIID"),11,2) & "','" & mid(rstData("strEDIID"),13,1) & "','" & right(rstData("strEDIID"),2) &"','lockClassList');"""
+										' check consent
+										if rstData("intConsent") =1 then 
+											response.write "checked disabled data-toggle=""toggle"" data-off=""No"" data-on=""Yes"" data-onstyle=""success"" data-offstyle=""danger"" data-size=""mini""></td>"
+											Response.Write "<td><img src=""images/blinkingarrow.gif"" alt=""Blinking Arrow"" /><a href=""javascript:goEDI('edi_teacher_questionnaire.asp','" & left(rstData("strEDIID"),4) & "','" & mid(rstData("strEDIID"),5,3) & "','" & mid(rstData("strEDIID"),8,3) & "','" & mid(rstData("strEDIID"),11,2) & "','" & mid(rstData("strEDIID"),13,1) & "','" & right(rstData("strEDIID"),2) & "');"" class=""boldlinkBlue"">&nbsp" & lblEDI & "</a><!--<img src=""images/blinkingarrowRight.gif"" alt=""Blinking Arrow Right"" />--></td>"
+										elseif rstData("intConsent") <> 0 or checkNull(rstData("intConsent")) ="null" then 
+											response.write "checked data-toggle=""toggle"" data-off=""No"" data-on=""Yes"" data-onstyle=""success"" data-offstyle=""danger"" data-size=""mini""></td>"
+											response.write "<td><button type=""button"" class=""btn btn-primary btn-xs"" onclick=""if(document.getElementById('consent"&rstData("strEdiid")&"').checked){goConfirm_Consent('"& left(rstData("strEDIID"),4) & "','" & mid(rstData("strEDIID"),5,3) & "','" & mid(rstData("strEDIID"),8,3) & "','" & mid(rstData("strEDIID"),11,2) & "','" & mid(rstData("strEDIID"),13,1) & "','" & right(rstData("strEDIID"),2) &"',document.getElementById('consent"&rstData("strEdiid")&"').checked,'consent');}else{alert('" & strAlbertaWarning & "');goConfirm_Lock('"& left(rstData("strEDIID"),4) & "','" & mid(rstData("strEDIID"),5,3) & "','" & mid(rstData("strEDIID"),8,3) & "','" & mid(rstData("strEDIID"),11,2) & "','" & mid(rstData("strEDIID"),13,1) & "','" & right(rstData("strEDIID"),2) &"','lockClassList');};"">Submit</button></td>"
 										else
-											response.write "disabled "
+											response.write "disabled data-toggle=""toggle"" data-off=""No"" data-on=""Yes"" data-onstyle=""success"" data-offstyle=""danger"" data-size=""mini""></td>"
+											response.write "<td></td>"
 										end if 
 										
-										response.write "data-toggle=""toggle"" data-off=""No"" data-on=""Yes"" data-onstyle=""success"" data-offstyle=""danger"" data-size=""mini""  onClick=""alert('hi');""></td>"
+										
+										
+										'onchange=""javascript:alert('" & strAlbertaWarning & "');goConfirm_Lock('"& left(rstData("strEDIID"),4) & "','" & mid(rstData("strEDIID"),5,3) & "','" & mid(rstData("strEDIID"),8,3) & "','" & mid(rstData("strEDIID"),11,2) & "','" & mid(rstData("strEDIID"),13,1) & "','" & right(rstData("strEDIID"),2) &"','lockClassList');""
+										
+									else 
+										Response.Write "<td><img src=""images/blinkingarrow.gif"" alt=""Blinking Arrow"" /><a href=""javascript:goEDI('edi_teacher_questionnaire.asp','" & left(rstData("strEDIID"),4) & "','" & mid(rstData("strEDIID"),5,3) & "','" & mid(rstData("strEDIID"),8,3) & "','" & mid(rstData("strEDIID"),11,2) & "','" & mid(rstData("strEDIID"),13,1) & "','" & right(rstData("strEDIID"),2) & "');"" class=""boldlinkBlue"">&nbsp" & lblEDI & "</a><!--<img src=""images/blinkingarrowRight.gif"" alt=""Blinking Arrow Right"" />--></td>"
 									end if 
 									
-									Response.Write "<td><img src=""images/blinkingarrow.gif"" alt=""Blinking Arrow"" /><a href=""javascript:goEDI('edi_teacher_questionnaire.asp','" & left(rstData("strEDIID"),4) & "','" & mid(rstData("strEDIID"),5,3) & "','" & mid(rstData("strEDIID"),8,3) & "','" & mid(rstData("strEDIID"),11,2) & "','" & mid(rstData("strEDIID"),13,1) & "','" & right(rstData("strEDIID"),2) & "');"" class=""boldlinkBlue"">&nbsp" & lblEDI & "</a><!--<img src=""images/blinkingarrowRight.gif"" alt=""Blinking Arrow Right"" />--></td>"
+									
 									if session("province") = 6 then 							
 										Response.Write "<td><img src=""images/blinkingarrow.gif"" alt=""Blinking Arrow"" /><a href=""javascript:goEDI('edi_teacher_identity.asp','" & left(rstData("strEDIID"),4) & "','" & mid(rstData("strEDIID"),5,3) & "','" & mid(rstData("strEDIID"),8,3) & "','" & mid(rstData("strEDIID"),11,2) & "','" & mid(rstData("strEDIID"),13,1) & "','" & right(rstData("strEDIID"),2) & "');"" class=""boldlinkBlue"">&nbsp" & lblIdentity & "</a><!--<img src=""images/blinkingarrowRight.gif"" alt=""Blinking Arrow Right"" />--></td>"
 									end if 
@@ -570,10 +598,11 @@ if blnSecurity then
 									rstData.MoveNext 
 
                                     if Request.Form("Action") = "Add" AND request.form("ediID") = rstData("strEDIID") then 
-                                        
-                                        Response.Write "<SCRIPT LANGUAGE=""JavaScript"">"
-                                        Response.write "goEDI('edi_teacher_questionnaire.asp','" & left(rstData("strEDIID"),4) & "','" & mid(rstData("strEDIID"),5,3) & "','" & mid(rstData("strEDIID"),8,3) & "','" & mid(rstData("strEDIID"),11,2) & "','" & mid(rstData("strEDIID"),13,1) & "','" & right(rstData("strEDIID"),2) & "');"                                        
-                                        Response.Write "</SCRIPT>"
+                                        if session("province") <> 3 then 
+											Response.Write "<SCRIPT LANGUAGE=""JavaScript"">"
+											Response.write "goEDI('edi_teacher_questionnaire.asp','" & left(rstData("strEDIID"),4) & "','" & mid(rstData("strEDIID"),5,3) & "','" & mid(rstData("strEDIID"),8,3) & "','" & mid(rstData("strEDIID"),11,2) & "','" & mid(rstData("strEDIID"),13,1) & "','" & right(rstData("strEDIID"),2) & "');"                                        
+											Response.Write "</SCRIPT>"
+										end if 
                                     end if 
 								loop
 								if previousClass <> "" then 

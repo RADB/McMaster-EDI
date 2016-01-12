@@ -40,6 +40,9 @@ if blnSecurity then
 					strSql2 = strSql2 & "dtmDob = '" & Request.Form("DOBday") & "/" & monthname(Request.Form("DOBmonth")) & "/" & Request.Form("DOByear") & "', "
 				end if 
                 
+				if request.form("intStatus") = 6 then 
+					strSql2 = strSql2 & "intConsent = 0, "
+				end if 
 
 				for each item in Request.Form 
 					if NOT (item = "frmEDIYear" OR item = "frmAction" OR item = "frmSection" OR item = "frmSite" OR item ="frmSchool" OR item ="frmTeacher" OR item ="frmClass" OR item = "frmChild" OR item = "frmNextChild" OR item = "intSex" OR item = "strPostal" OR item = "DOBday" OR item = "DOByear" OR item = "DOBmonth" OR item = "btnSave" OR item = "hdnLock" OR item = "hdnCheckBoxes" OR item = "hdnRadioButtons" OR item = "Student" OR item = "classes" OR item = "email" OR item ="rpt" OR item ="XML" or item="CurrentSection") then 
@@ -332,6 +335,7 @@ if blnSecurity then
 		end if 
 	' end child section
 	end if
+	'response.write "Province" & session("province")
 	%>
 	<form name="Children" method="post" action="edi_teacher_questionnaire.asp"> 
 		<input type="hidden" name="Student" value="" />
@@ -674,7 +678,7 @@ end if
 
 function buildCheckBox(columnname,currentvalue)
     strCheck = "&nbsp;&nbsp;<input type=""checkbox"" id=""" & columnname & """ name=""" & columnname & """"
-    if currentvalue = true then 
+    if cbool(currentvalue) = true then 
         strCheck = strCheck & " checked=""CHECKED"""
     end if                                      
     strCheck = strCheck & "/>"

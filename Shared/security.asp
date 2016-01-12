@@ -117,6 +117,12 @@ if NOT session("user") then
 <%
 	blnSecurity = false
 else
+	if Request.QueryString("Language") = "English" then
+		session("language") = "English"
+	elseif 	Request.QueryString("Language") = "French" then
+		session("language") = "French"
+	end if 
+	
 	blnSecurity = true
 	strTopBar = "<table width=""760"" border=""1"" cellpadding=""1"" cellspacing=""0"" style=""border-color:#006600;background-color:#dcdcdc"">"
 	strTopBar = strTopBar & "<tr><td><table width=""750"" border=""0"" cellpadding=""3"" cellspacing=""0""><tr><td align=""left""><font class=""boldTextBlack"">&nbsp;&nbsp;"
@@ -152,7 +158,7 @@ else
 		lblClassCrumb = "Class"
 		lblUpdate = "Mettre à jour"
 		lblStatus = "État du questionnaire"
-		lblConsent = "Consent"
+		lblConsent = "Consentement"
 		lblLocal = "Identification locale"
 		lblEDI = "IMDPE"
 		lblIdentity = "Questionnaire sur le sentiment d’identité"

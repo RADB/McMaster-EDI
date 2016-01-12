@@ -60,9 +60,11 @@ if blnSecurity then
 
 	if Request.form("frmAction") = "lockClassList" then  
 		strSql = "UPDATE demographics SET intStatus = 6, strLanguageCompleted = '" & session("language") & "' WHERE strEDIID = '" & strEDIID & "'"
+		strSql2 = "UPDATE children SET intConsent = 0 WHERE strEDIID = '" & strEDIID & "'"
 		'response.write strSql
 		' update the status to indicate no consent
 		conn.execute strSql
+		conn.execute strSql2		
 	end if 
 	 	
 	if Request.form("frmAction") = "lock" then  
@@ -77,7 +79,10 @@ if blnSecurity then
 					strSql2 = strSql2 & "dtmDob = '" & Request.Form("DOBday") & "/" & monthname(Request.Form("DOBmonth")) & "/" & Request.Form("DOByear") & "', "
 				end if 
                 
-
+				if request.form("intStatus") = 6 then 
+					strSql2 = strSql2 & "intConsent = 0, "
+				end if 
+				
 				for each item in Request.Form 
 					if NOT (item = "frmAction" OR item = "frmSection" OR item = "frmEDIYear" OR item = "frmSite" OR item ="frmSchool" OR item ="frmTeacher" OR item ="frmClass" OR item = "frmChild" OR item = "frmNextChild" OR item = "intSex" OR item = "strPostal" OR item = "DOBday" OR item = "DOByear" OR item = "DOBmonth" OR item = "btnSave" OR item = "hdnLock" OR item = "hdnCheckBoxes" OR item = "Student" OR item = "classes" OR item = "email" OR  item = "hdnRadioButtons" OR item ="rpt" OR item ="XML" or item="CurrentSection") then 
 						blnUpdate = true
