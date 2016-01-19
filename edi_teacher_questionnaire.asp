@@ -676,11 +676,14 @@ if blnSecurity then
 	call close_adodb(conn)
 end if
 
-function buildCheckBox(columnname,currentvalue)
+function buildCheckBox(columnname,currentvalue)	
     strCheck = "&nbsp;&nbsp;<input type=""checkbox"" id=""" & columnname & """ name=""" & columnname & """"
-    if cbool(currentvalue) = true then 
-        strCheck = strCheck & " checked=""CHECKED"""
-    end if                                      
+
+	if not isnull(currentvalue)  then 			
+		if cbool(currentvalue) = True then 			
+			strCheck = strCheck & " checked="" CHECKED"""
+		end if                                      
+	end if
     strCheck = strCheck & "/>"
     
     if len(strCheckBoxes) > 0 then 

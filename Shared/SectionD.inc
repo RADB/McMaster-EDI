@@ -90,7 +90,7 @@
 											
 				' get the number of options 
 				intOptions = rstData("intOptions")
-        isCheckBox = rstData("isCheckBox")
+				isCheckBox = rstData("isCheckBox")
 				for intCol = 1 to intoptions
 					Response.Write "<td align=""center"" valign=""middle"" width=""70""><font class=""boldTextBlack"">" & rstData("Col" & intCol) & "</font></td>"
 					' store the header values for the title below 2005 09 15
