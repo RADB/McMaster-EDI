@@ -727,7 +727,7 @@ end function
 
 function getHelpLink(provinceID,Section,Question)    
 '    getHelpLink = "<td><img href="getHelp.asp?provinceID=1&Section=Demographics&Question=1" border=""0"" src=""images\Help.png"" alt=""Click for help"" name=""Help"" title=""Click for help"" height=""20"" data-toggle=""modal"" data-target=""#helpModal""/></td>"  	
-
+'" & question & "
 	getHelpLink = "<td><img href=""getHelp.asp?provinceID=" & provinceID & "&Section=" & Section & "&Question=" & replace(Question,"&nbsp;","") & """ border=""0"" src=""images\Help.png"" alt=""Click for help"" name=""Help"" title=""Click for help"" height=""20"" data-toggle=""modal"" data-target=""#helpModal""/></td>"  	
 	'getHelpLink = "<td><img href=""javascript:void(0);"" radb-query=""getHelp.asp?provinceID=" & provinceID & "&Section=" & Section & "&Question=" & Question & """ border=""0"" src=""images\Help.png"" alt=""Click for help"" name=""Help"" title=""Click for help"" height=""20"" data-toggle=""modal"" data-target=""#helpModal""/></td>"  	
 end Function

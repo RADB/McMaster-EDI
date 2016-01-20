@@ -41,7 +41,7 @@
 		' get all the demographic questions
 '		strSql = "SELECT E.[English], E.[French], E.[isSectionHeader], e.[section], E.[Question], E.[Option], E.isHeader,  C.[Language], C.intOptions, C.Col1, C.Col2, C.Col3, C.Col4, C.Col5, C.Col6 FROM Page_SectionE E  LEFT JOIN [Column Headers] C ON E.HeaderType = C.HID WHERE C.[Language]='" & strLanguage & "' OR C.[Language] Is Null ORDER BY E.[isSectionHeader], e.[section], E.[Question], E.[Option], E.[isHeader]"
     strSql = "SELECT E.[English], E.[French], E.[isSectionHeader], e.[section], E.[Question], E.[Option], E.isHeader,  C.[Language], C.intOptions, C.Col1, C.Col2, C.Col3, C.Col4, C.Col5, C.Col6 FROM Page_SectionE E  LEFT JOIN [Column Headers] C ON E.HeaderType = C.HID WHERE (C.[Language]='" & strLanguage & "' OR C.[Language] Is Null) " & strWhere & " ORDER BY E.Sequence"
-
+'response.write strSql
   'open the Section D questions
   rstData.Open strSql, conn,1
 
@@ -235,7 +235,7 @@
 								response.write "</td>"
 							next 
 							intQuestion = 11
-						  'if session("Province") <> 5 then 
+						  if session("Province") <> 8 then 
 						  if rstData("option") = 0 then 
 
 							  ' insert questions 6 - 11 
@@ -263,30 +263,30 @@
 									strLang = "French"
 								  end if 
 			                      
-													Response.Write intRow & " ) &nbsp;&nbsp;</font></td><td align=""left"" ><font class=""boldTextBlack"">" &  rstAdditional("strQ" & intRow & strLang) & "</font>"
-													Response.Write "</td>"
-			    									
-													' write the radio option buttons
-													for intCol = 1 to 3
-														'Response.Write "<td align=""center"" valign=""middle"" width=""70""><input type=""radio"" title=""" & aHeader(intCol) &""" name=""" & strQuestion & """ value=""" & intCol & """"
-			    										
-														' check the selected box
-														'if intCol = rstStudent(strQuestion) then 
-														'	response.write " checked=""CHECKED"""
-														'end if 
-			    										
-														'response.write " /></td>"
-														Response.Write "<td align=""center"" valign=""middle"" width=""70"">"
-														response.write buildRadioButton("horizontal", strQuestion, aHeader(intcol),intcol, rstStudent(strQuestion),"","")
-														response.write "</td>"
-													next 
+									Response.Write intRow & " ) &nbsp;&nbsp;</font></td><td align=""left"" ><font class=""boldTextBlack"">" &  rstAdditional("strQ" & intRow & strLang) & "</font>"
+									Response.Write "</td>"
+									
+									' write the radio option buttons
+									for intCol = 1 to 3
+										'Response.Write "<td align=""center"" valign=""middle"" width=""70""><input type=""radio"" title=""" & aHeader(intCol) &""" name=""" & strQuestion & """ value=""" & intCol & """"
+										
+										' check the selected box
+										'if intCol = rstStudent(strQuestion) then 
+										'	response.write " checked=""CHECKED"""
+										'end if 
+										
+										'response.write " /></td>"
+										Response.Write "<td align=""center"" valign=""middle"" width=""70"">"
+										response.write buildRadioButton("horizontal", strQuestion, aHeader(intcol),intcol, rstStudent(strQuestion),"","")
+										response.write "</td>"
+									next 
 								  response.write "</tr>"  
 								else
 								  intQuestion = intRow -1
 								  Exit For
-												end if 		
-											next	
-							'end if 
+								end if 		
+							next	
+							end if 
 						  end if 
 								case 6 
 						  if rstData("Option") = 104 then   
