@@ -84,7 +84,7 @@ if blnSecurity then
 					select case session("province")
 					    ' Alberta
 					    case 3 
-					        strLink = "documents\2015EDIGuideAlberta" & session("Language") & ".pdf"
+					        strLink = "documents\2016EDIGuideAlberta" & session("Language") & ".pdf"
 					    ' Manitoba
 					    case 2 
 					        strLink = "documents\2015EDIGuideManitoba" & session("Language") & ".pdf"
@@ -92,17 +92,17 @@ if blnSecurity then
 					    Case 5 
 					        strLink = "documents\2015EDIGuideSaskatchewan" & session("Language") & ".pdf"
 					    Case 6 					       
-					        strLink = "documents\2015EDIGuideNorthwestTerritories" & session("Language") & ".pdf"
+					        strLink = "documents\2016EDIGuideNorthwestTerritories" & session("Language") & ".pdf"
 					    Case 7 					      
 					        strLink = "documents\2015EDIGuideNewfoundlandLabrador" & session("Language") & ".pdf"
 					    Case 8 					        
-					        strLink = "documents\2015EDIGuideNovaScotia" & session("Language") & ".pdf"
+					        strLink = "documents\2016EDIGuideNovaScotia" & session("Language") & ".pdf"
 					    ' Ontario
 					    Case 1 					    
-					        strLink = "documents\2015EDIGuideOntario" & session("Language") & ".pdf"
+					        strLink = "documents\2016EDIGuideOntario" & session("Language") & ".pdf"
 					    ' all others use ontario
 					    case else
-					        strLink = "documents\2015EDIGuideOntario" & session("Language") & ".pdf"
+					        strLink = "documents\2016EDIGuideOntario" & session("Language") & ".pdf"
 					end select 
 					
 					'if session("language") = "French" then 

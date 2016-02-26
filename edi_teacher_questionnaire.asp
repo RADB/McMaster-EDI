@@ -418,7 +418,12 @@ if blnSecurity then
 									end if 
 									
 									' set the SQL query to get then previous child in the class
-									strSql = "SELECT right('0' + Max(intChild),2) as previousChild FROM children WHERE intClassID=" & strSite & strSchool & strTeacher & strClass & " AND intChild < " & strChild & " GROUP BY intClassID"
+									if session("province") = 3 then 'alberta
+										strSql = "SELECT right('0' + Max(intChild),2) as previousChild FROM children WHERE intConsent=1 AND intClassID=" & strSite & strSchool & strTeacher & strClass & " AND intChild < " & strChild & " GROUP BY intClassID"
+									else
+										strSql = "SELECT right('0' + Max(intChild),2) as previousChild FROM children WHERE intClassID=" & strSite & strSchool & strTeacher & strClass & " AND intChild < " & strChild & " GROUP BY intClassID"
+									end if 
+									
 									set rstChildren = server.CreateObject("adodb.recordset")
 									rstChildren.Open strSql, conn
 									
@@ -434,8 +439,12 @@ if blnSecurity then
 									' close the recordset
 									rstChildren.Close 
 									
-									' set the SQL query to get then next child in the class
-									strSql = "SELECT right('0' + Min(intChild),2) as nextChild FROM children WHERE intClassID=" & strSite & strSchool & strTeacher & strClass & " AND intChild > " & strChild & " GROUP BY intClassID"
+									if session("province") = 3 then ' Alberta
+										' set the SQL query to get then next child in the class
+										strSql = "SELECT right('0' + Min(intChild),2) as nextChild FROM children WHERE intConsent=1 AND intClassID=" & strSite & strSchool & strTeacher & strClass & " AND intChild > " & strChild & " GROUP BY intClassID"
+									else
+										strSql = "SELECT right('0' + Min(intChild),2) as nextChild FROM children WHERE intClassID=" & strSite & strSchool & strTeacher & strClass & " AND intChild > " & strChild & " GROUP BY intClassID"
+									end if 
 									
 									' open the recordset
 									rstChildren.Open strSql, conn
